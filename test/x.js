@@ -13,11 +13,27 @@ describe('basic', function() {
 		assert.equal(dom.nodeName, 'BUTTON');
 	});
 
-	it('should set attributes', function() {
-		var dom = x('button', {
-			class: 'btn'
+	describe('attributes', function() {
+
+		it('should set attributes', function() {
+			var dom = x('button', {
+				class: 'btn'
+			});
+			assert.equal(dom.className, 'btn');
 		});
-		assert.equal(dom.className, 'btn');
+
+	});
+
+	describe('child nodes', function() {
+
+		it('should append child nodes', function() {
+			var list = x('ul', [
+				x('li'),
+				x('li')
+			]);
+
+		});
+
 	});
 
 });
