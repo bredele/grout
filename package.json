@@ -1,0 +1,26 @@
+{
+  "name": "x",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "zuul --local -- test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bredele/x.git"
+  },
+  "author": "Olivier Wietrich <olivier.wietrich@gmail.com> (http://github.com/bredele)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bredele/x/issues"
+  },
+  "homepage": "https://github.com/bredele/x",
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "zuul": "^1.16.5"
+  }
+}
