@@ -13,4 +13,11 @@ describe('basic', function() {
 		assert.equal(dom.nodeName, 'BUTTON');
 	});
 
+	it('should set attributes', function() {
+		var dom = x('button', {
+			class: 'btn'
+		});
+		assert.equal(dom.className, 'btn');
+	});
+
 });
