@@ -106,6 +106,23 @@ describe('basic', function() {
       });
 
     });
+
+    describe('attributes listener', function() {
+      var ev = document.createEvent('MouseEvents');
+      ev.initEvent('click', true, true);
+      //ev.synthetic = true;
+
+      it('should listen dom events', function(done) {
+        var dom = x('button', {
+          onclick: function() {
+            done();
+          }
+        })();
+
+        dom.dispatchEvent(ev, true);
+
+      });
+    });
     
   });
   
