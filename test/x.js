@@ -64,6 +64,17 @@ describe('basic', function() {
 
 	});
 	
+	describe("attributes", function() {
+		
+		it('should set attributes', function() {
+			var dom = x('button', {
+				class: 'btn'
+			})();
+			assert.equal(dom.className, 'btn');
+		});
+		
+	});
+	
 
 
 	// describe('attributes', function() {

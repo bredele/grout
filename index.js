@@ -11,21 +11,25 @@ module.exports = x;
  * @api public
  */
 
-function x(tag, label) {
+function x(tag, nodes) {
   var dom = document.createElement(tag);
   return function() {
-    if(label instanceof Array) {
-      for(var i = 0, l = label.length; i < l; i++) {
-        var node = label[i];
+    if(nodes instanceof Array) {
+      for(var i = 0, l = nodes.length; i < l; i++) {
+        var node = nodes[i];
         if(typeof node === 'string') {
           var text = document.createTextNode(node);
           dom.appendChild(text);
         } else {
-          dom.appendChild(label[i]());
+          dom.appendChild(node());
         }
       }
+    } else if(typeof nodes === 'object') {
+      for(var key in nodes) {
+        dom.setAttribute(key, nodes[key]);
+      }
     } else {
-      dom.innerHTML = label;
+      dom.innerHTML = nodes;
     }
     return dom;
   };
