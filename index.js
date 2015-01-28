@@ -11,9 +11,10 @@ module.exports = x;
  * @api public
  */
 
-function x(tag, attrs) {
+function x(tag, label) {
 	var dom = document.createElement(tag);
   return function() {
+  	dom.innerHTML = label;
   	return dom;
   };
 }

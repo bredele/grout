@@ -13,9 +13,14 @@ describe('basic', function() {
 		assert.equal(typeof dom, 'function');
 	});
 
-	it('should create dom element', function() {
+	it('should create dom element with a specified tag', function() {
 		var el = x('button')();
 		assert.equal(el.nodeName, 'BUTTON');
+	});
+
+	it('should set the inner value of that dom', function() {
+		var el = x('button', 'hello')();
+		assert.equal(el.innerHTML, 'hello');
 	});
 
 	// describe('attributes', function() {
