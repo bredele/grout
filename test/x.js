@@ -13,10 +13,10 @@ describe('basic', function() {
 		assert.equal(typeof dom, 'function');
 	});
 
-	// it('should create dom element', function() {
-	// 	var dom = x('button');
-	// 	assert.equal(dom.nodeName, 'BUTTON');
-	// });
+	it('should create dom element', function() {
+		var el = x('button')();
+		assert.equal(el.nodeName, 'BUTTON');
+	});
 
 	// describe('attributes', function() {
 

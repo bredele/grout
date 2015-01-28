@@ -12,8 +12,9 @@ module.exports = x;
  */
 
 function x(tag, attrs) {
+	var dom = document.createElement(tag);
   return function() {
-
+  	return dom;
   };
 }
 
