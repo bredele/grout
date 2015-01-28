@@ -86,6 +86,14 @@ describe('basic', function() {
       assert.equal(img.nodeName, 'IMG');
       assert.equal(img.getAttribute('src'), 'hello');
     });
+
+    it('should still set text node', function() {
+      var dom = x('button', {
+        class: 'btn'
+      }, 'hello')();
+      console.log(dom);
+      assert.equal(dom.innerHTML, 'hello');
+    });
     
   });
   

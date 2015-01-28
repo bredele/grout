@@ -28,14 +28,26 @@ function x(tag, attrs, nodes) {
   };
 }
 
+/**
+ * Set node children elements.
+ * 
+ * @param  {Element} dom
+ * @param  {Array} nodes
+ * @api private
+ */
+
 function children(dom, nodes) {
-  for(var i = 0, l = nodes.length; i < l; i++) {
-    var node = nodes[i];
-    if(typeof node === 'string') {
-      var text = document.createTextNode(node);
-      dom.appendChild(text);
-    } else {
-      dom.appendChild(node());
+  if(typeof nodes === 'string') {
+    dom.innerHTML = nodes;
+  } else {
+    for(var i = 0, l = nodes.length; i < l; i++) {
+      var node = nodes[i];
+      if(typeof node === 'string') {
+        var text = document.createTextNode(node);
+        dom.appendChild(text);
+      } else {
+        dom.appendChild(node());
+      }
     }
   }
 }
