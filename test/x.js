@@ -8,32 +8,37 @@ var x = require('..');
 
 describe('basic', function() {
 
-	it('should create dom element', function() {
+	it('should return a function', function() {
 		var dom = x('button');
-		assert.equal(dom.nodeName, 'BUTTON');
+		assert.equal(typeof dom, 'function');
 	});
 
-	describe('attributes', function() {
+	// it('should create dom element', function() {
+	// 	var dom = x('button');
+	// 	assert.equal(dom.nodeName, 'BUTTON');
+	// });
 
-		it('should set attributes', function() {
-			var dom = x('button', {
-				class: 'btn'
-			});
-			assert.equal(dom.className, 'btn');
-		});
+	// describe('attributes', function() {
 
-	});
+	// 	it('should set attributes', function() {
+	// 		var dom = x('button', {
+	// 			class: 'btn'
+	// 		});
+	// 		assert.equal(dom.className, 'btn');
+	// 	});
 
-	describe('child nodes', function() {
+	// });
 
-		it('should append child nodes', function() {
-			var list = x('ul', [
-				x('li'),
-				x('li')
-			]);
+	// describe('child nodes', function() {
 
-		});
+	// 	it('should append child nodes', function() {
+	// 		var list = x('ul', [
+	// 			x('li'),
+	// 			x('li')
+	// 		]);
 
-	});
+	// 	});
+
+	// });
 
 });
