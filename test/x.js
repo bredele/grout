@@ -25,7 +25,7 @@ describe('basic', function() {
 
 	describe("inception", function() {
 		
-		it('should append one child element', function() {
+		it('should append one dom node', function() {
 			var dom = x('ul', [
 				x('li', 'hello')
 			])();
@@ -36,12 +36,19 @@ describe('basic', function() {
 
 		});
 
-		it('should append multiple child element', function() {
+		it('should append multiple dom nodes', function() {
 			var dom = x('ul', [
 				x('li', 'hello'),
 				x('li', 'world')
 			])();
 			assert.equal(dom.children.length, 2);
+		});
+
+		it('should append string as a dom node', function() {
+			var dom = x('ul', [
+				'hello'
+			])();
+			assert.equal(dom.innerHTML, 'hello');
 		});
 
 	});

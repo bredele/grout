@@ -16,7 +16,13 @@ function x(tag, label) {
   return function() {
     if(label instanceof Array) {
       for(var i = 0, l = label.length; i < l; i++) {
-        dom.appendChild(label[i]());
+        var node = label[i];
+        if(typeof node === 'string') {
+          var text = document.createTextNode(node);
+          dom.appendChild(text);
+        } else {
+          dom.appendChild(label[i]());
+        }
       }
     } else {
       dom.innerHTML = label;
