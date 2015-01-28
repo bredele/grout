@@ -25,7 +25,7 @@ describe('basic', function() {
 
 	describe("inception", function() {
 		
-		it('should append child element', function() {
+		it('should append one child element', function() {
 			var dom = x('ul', [
 				x('li', 'hello')
 			])();
