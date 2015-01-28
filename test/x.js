@@ -51,6 +51,17 @@ describe('basic', function() {
 			assert.equal(dom.innerHTML, 'hello');
 		});
 
+		it('should mix text and dom nodes', function() {
+			var dom = x('div', [
+				'hello',
+				x('ul', [
+					x('li', 'hello'),
+					x('li', 'world')
+				])
+			])();
+			assert.equal(dom.innerHTML, 'hello<ul><li>hello</li><li>world</li></ul>');
+		});
+
 	});
 	
 
