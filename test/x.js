@@ -36,6 +36,14 @@ describe('basic', function() {
 
 		});
 
+		it('should append multiple child element', function() {
+			var dom = x('ul', [
+				x('li', 'hello'),
+				x('li', 'world')
+			])();
+			assert.equal(dom.children.length, 2);
+		});
+
 	});
 	
 
