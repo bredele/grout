@@ -1,7 +1,7 @@
 {
-  "name": "x",
+  "name": "grout",
   "version": "0.0.0",
-  "description": "",
+  "description": "brick js mortar",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bredele/x.git"
+    "url": "https://github.com/bredele/grout.git"
   },
   "author": "Olivier Wietrich <olivier.wietrich@gmail.com> (http://github.com/bredele)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bredele/x/issues"
+    "url": "https://github.com/bredele/grout/issues"
   },
-  "homepage": "https://github.com/bredele/x",
+  "homepage": "https://github.com/bredele/grout",
   "devDependencies": {
     "mocha": "^2.1.0",
     "zuul": "^1.16.5"

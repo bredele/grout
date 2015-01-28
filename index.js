@@ -1,9 +1,9 @@
 
 /**
- * Expose 'x'
+ * Expose 'grout'
  */
 
-module.exports = x;
+module.exports = grout;
 
 
 /**
@@ -11,7 +11,7 @@ module.exports = x;
  * @api public
  */
 
-function x(tag, attrs, nodes) {
+function grout(tag, attrs, nodes) {
   var dom = document.createElement(tag);
   return function() {
     if(attrs instanceof Array) {
