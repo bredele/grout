@@ -94,7 +94,7 @@ describe('basic', function() {
       assert.equal(dom.innerHTML, 'hello');
     });
 
-    describe('advanced attributes', function() {
+    describe('attributes function', function() {
 
       it('should define functions as attributes', function() {
         var dom = x('button', {
