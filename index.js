@@ -18,7 +18,9 @@ function x(tag, attrs, nodes) {
       children(dom, attrs);
     } else if(typeof attrs === 'object') {
       for(var key in attrs) {
-        dom.setAttribute(key, attrs[key]);
+        var attr = attrs[key];
+        if(typeof attr === 'function') attr = attr();
+        dom.setAttribute(key, attr);
       }
       if(nodes) children(dom, nodes);
     } else {

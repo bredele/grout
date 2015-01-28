@@ -91,8 +91,20 @@ describe('basic', function() {
       var dom = x('button', {
         class: 'btn'
       }, 'hello')();
-      console.log(dom);
       assert.equal(dom.innerHTML, 'hello');
+    });
+
+    describe('advanced attributes', function() {
+
+      it('should define functions as attributes', function() {
+        var dom = x('button', {
+          class: function() {
+            return 'hello-world';
+          }
+        })();
+        assert.equal(dom.className, 'hello-world');
+      });
+
     });
     
   });
