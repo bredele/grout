@@ -47,7 +47,7 @@ function grout(tag, attrs, nodes) {
 
 function children(dom, nodes) {
   if(typeof nodes === 'string') {
-    dom.innerHTML = nodes;
+    dom.appendChild(document.createTextNode(nodes));
   } else {
     for(var i = 0, l = nodes.length; i < l; i++) {
       var node = nodes[i];
