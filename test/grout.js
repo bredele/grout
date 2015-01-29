@@ -172,6 +172,18 @@ describe('template', function() {
       assert.equal(dom.innerHTML, 'world');
     });
 
+    it('should update attribute when data changes', function() {
+      var store = new Store({
+        label: 'hello'
+      });
+      var dom = x('button', {
+        class: 'btn ${label}'
+      })(store);
+      assert.equal(dom.className, 'btn hello');
+      store.set('label', 'world');
+      assert.equal(dom.innerHTML, 'btn world');
+    });
+
   });
 
 });

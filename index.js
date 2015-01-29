@@ -72,6 +72,7 @@ function text(dom, str, store) {
   var render = tmpl.text;
   var node = document.createTextNode(render(store.data));
   dom.appendChild(node);
+  // todo: we should have option static
   for(var l = props.length; l--;) {
     store.on('change ' + props[l], function() {
       node.nodeValue = render(store.data);
