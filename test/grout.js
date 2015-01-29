@@ -105,6 +105,18 @@ describe('basic', function() {
         assert.equal(dom.className, 'hello-world');
       });
 
+      it('should call function with data', function() {
+        var dom = x('h1', {
+          class: function() {
+            return this.type;
+          }
+        })({
+          type: 'title'
+        });
+
+        assert.equal(dom.className, 'title');
+      });
+
     });
 
     describe('attributes listener', function() {

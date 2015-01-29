@@ -13,7 +13,7 @@ module.exports = grout;
 
 function grout(tag, attrs, nodes) {
   var dom = document.createElement(tag);
-  return function() {
+  return function(data) {
     if(attrs instanceof Array) {
       children(dom, attrs);
     } else if(typeof attrs === 'object') {
@@ -24,7 +24,7 @@ function grout(tag, attrs, nodes) {
             dom[key] = attr;
             break;
           } else {
-            attr = attr();
+            attr = attr.call(data);
           }
         }
         dom.setAttribute(key, attr);
