@@ -1,21 +1,23 @@
 
 /**
- * Expose 'grout'
+ * Create tree of dom nodes.
+ *
+ * @param {String} tag
+ * @param {String | Object} attrs (optional)
+ * @param {String | Object} nodes (optional)
+ * @return {Function} factory
+ * @api public
  */
 
-module.exports = function grout(tag, attrs, nodes) {
+module.exports = function(tag, attrs, nodes) {
   var dom = document.createElement(tag);
-  var array = attrs instanceof Array;
-  var object = typeof attrs === 'object';
+  var bool = !(attrs instanceof Array) && typeof attrs === 'object';
   return function(data) {
-    if(array) {
-      children(dom, attrs);
-    } else if(object) {
+    if(bool) {
       attributes(dom, attrs, data);
-      if(nodes) children(dom, nodes);
-    } else {
-      text(dom, attrs);
+      attrs = nodes;
     }
+    if(attrs) children(dom, attrs);
     return dom;
   };
 };
@@ -67,9 +69,11 @@ function text(dom, str) {
  */
 
 function children(dom, nodes) {
-  for(var i = 0, l = nodes.length; i < l; i++) {
+  if(typeof nodes === 'string') text(dom, nodes);
+  else for(var i = 0, l = nodes.length; i < l; i++) {
     var node = nodes[i];
     if(typeof node === 'string') text(dom, node);
     else dom.appendChild(node());
   }
 }
+
