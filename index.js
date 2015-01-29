@@ -3,6 +3,7 @@
  */
 
 var mouth = require('mouth');
+var Store = require('datastore');
 
 
 /**
@@ -19,11 +20,12 @@ module.exports = function(tag, attrs, nodes) {
   var dom = document.createElement(tag);
   var bool = !(attrs instanceof Array) && typeof attrs === 'object';
   return function(data) {
+    var store = new Store(data);
     if(bool) {
-      attributes(dom, attrs, data);
+      attributes(dom, attrs, store);
       attrs = nodes;
     }
-    if(attrs) children(dom, attrs, data);
+    if(attrs) children(dom, attrs, store);
     return dom;
   };
 };
@@ -38,7 +40,7 @@ module.exports = function(tag, attrs, nodes) {
  * @api private
  */
 
-function attributes(dom, obj, data) {
+function attributes(dom, obj, store) {
   for(var key in obj) {
     var attr = obj[key];
     if(typeof attr === 'function') {
@@ -46,9 +48,9 @@ function attributes(dom, obj, data) {
         dom[key] = attr;
         break;
       }
-      attr = attr.call(data);
+      attr = attr.call(store.data);
     } else {
-      attr = mouth(attr).text(data);
+      attr = mouth(attr).text(store.data);
     }
     dom.setAttribute(key, attr);
   }
@@ -63,9 +65,18 @@ function attributes(dom, obj, data) {
  * @api private
  */
 
-function text(dom, str, data) {
-  var result = mouth(str).text(data);
-  dom.appendChild(document.createTextNode(result));
+function text(dom, str, store) {
+  // todo: we should cache function and props
+  var tmpl = mouth(str);
+  var props = tmpl.props;
+  var render = tmpl.text;
+  var node = document.createTextNode(render(store.data));
+  dom.appendChild(node);
+  for(var l = props.length; l--;) {
+    store.on('change ' + props[l], function() {
+      node.nodeValue = render(store.data);
+    });
+  }
 }
 
 

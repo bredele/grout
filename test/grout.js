@@ -5,6 +5,7 @@
 
 var assert = require('assert');
 var x = require('..');
+var Store = require('datastore');
 
 describe('basic', function() {
 
@@ -157,6 +158,20 @@ describe('template', function() {
       label: 'hello'
     });
     assert.equal(dom.className, 'btn hello');
+  });
+
+  describe('observable', function() {
+
+    it('should update inner text when data changes', function() {
+      var store = new Store({
+        label: 'hello'
+      });
+      var dom = x('button', '${label}')(store);
+      assert.equal(dom.innerHTML, 'hello');
+      store.set('label', 'world');
+      assert.equal(dom.innerHTML, 'world');
+    });
+
   });
 
 });
