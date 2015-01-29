@@ -31,10 +31,24 @@ function grout(tag, attrs, nodes) {
       }
       if(nodes) children(dom, nodes);
     } else {
-      dom.innerHTML = attrs;
+      text(dom, attrs);
     }
     return dom;
   };
+}
+
+
+
+/**
+ * Create and append text node.
+ * 
+ * @param  {Element} dom 
+ * @param  {String} str
+ * @api private
+ */
+
+function text(dom, str) {
+  dom.appendChild(document.createTextNode(str));
 }
 
 /**
