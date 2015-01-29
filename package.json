@@ -22,5 +22,8 @@
   "devDependencies": {
     "mocha": "^2.1.0",
     "zuul": "^1.16.5"
+  },
+  "dependencies": {
+    "mouth": "^0.1.2"
   }
 }

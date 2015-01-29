@@ -140,3 +140,23 @@ describe('basic', function() {
   
 
 });
+
+describe('template', function() {
+
+  it('should substitute inner text with data', function() {
+    var dom = x('button', '${label}')({
+      label: 'hello'
+    });
+    assert.equal(dom.innerHTML, 'hello');
+  });
+
+  it('should substitute attributes with data', function() {
+    var dom = x('button', {
+      class: 'btn ${label}'
+    }, '${label}')({
+      label: 'hello'
+    });
+    assert.equal(dom.className, 'btn hello');
+  });
+
+});

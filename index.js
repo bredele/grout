@@ -1,3 +1,9 @@
+/**
+ * Module dependencies.
+ */
+
+var mouth = require('mouth');
+
 
 /**
  * Create tree of dom nodes.
@@ -17,7 +23,7 @@ module.exports = function(tag, attrs, nodes) {
       attributes(dom, attrs, data);
       attrs = nodes;
     }
-    if(attrs) children(dom, attrs);
+    if(attrs) children(dom, attrs, data);
     return dom;
   };
 };
@@ -41,6 +47,8 @@ function attributes(dom, obj, data) {
         break;
       }
       attr = attr.call(data);
+    } else {
+      attr = mouth(attr).text(data);
     }
     dom.setAttribute(key, attr);
   }
@@ -55,8 +63,9 @@ function attributes(dom, obj, data) {
  * @api private
  */
 
-function text(dom, str) {
-  dom.appendChild(document.createTextNode(str));
+function text(dom, str, data) {
+  var result = mouth(str).text(data);
+  dom.appendChild(document.createTextNode(result));
 }
 
 
@@ -68,11 +77,11 @@ function text(dom, str) {
  * @api private
  */
 
-function children(dom, nodes) {
-  if(typeof nodes === 'string') text(dom, nodes);
+function children(dom, nodes, data) {
+  if(typeof nodes === 'string') text(dom, nodes, data);
   else for(var i = 0, l = nodes.length; i < l; i++) {
     var node = nodes[i];
-    if(typeof node === 'string') text(dom, node);
+    if(typeof node === 'string') text(dom, node, data);
     else dom.appendChild(node());
   }
 }
