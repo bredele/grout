@@ -1,5 +1,13 @@
 # grout
 
+## Usage
+
+
+```js
+var dom = require('grout');
+```
+
+
 ## Learn it in 2
 
 Create a DOM element
@@ -28,6 +36,8 @@ var inception = dom('ul', [
 inception();
 ```
 
+
+
 Create attributes 
 
 ```js
@@ -52,6 +62,9 @@ btn();
 ```
 it is that easy!
 
+
+
+
 Bind a DOM element with some data
 
 ```js
@@ -71,7 +84,7 @@ btn({
 // => <button>Hello olivier</button>
 ```
 
-It is blazing fast and works everywhere
+It is blazing fast and works with every DOM nodes
 
 ```js
 var btn = dom('button', {
