@@ -1,5 +1,55 @@
 # grout
 
+## Learn it in 2
+
+Create a DOM element
+
+```js
+var btn = dom('button');
+btn();
+```
+
+with a text content
+
+```js
+var btn = dom('button', 'Hello world!');
+btn();
+```
+
+and append multiple DOM nodes.
+
+```js
+var inception = dom('ul', [
+  dom('li', 'first item'),
+  dom('li', 'second item')
+]);
+inception();
+```
+
+Create attributes 
+
+```js
+var btn = dom('button', {
+  id: 'btn'
+	class: 'dark'
+});
+btn();
+```
+
+or attach event listeners.
+
+```js
+var btn = dom('button', {
+  id: 'btn'
+	onclick: function() {
+	  // do something
+  }
+});
+btn();
+```
+
+
+
 ## Use with [brick](http://github.com/bredele/brickjs)
 
 ```js
