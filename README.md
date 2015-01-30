@@ -16,7 +16,7 @@ var btn = dom('button', 'Hello world!');
 btn();
 ```
 
-and append multiple DOM nodes.
+and quickly append multiple DOM nodes.
 
 ```js
 var inception = dom('ul', [
@@ -30,25 +30,74 @@ Create attributes
 
 ```js
 var btn = dom('button', {
-  id: 'btn'
-	class: 'dark'
+  id: 'btn',
+  class: 'dark'
 });
 btn();
 ```
 
-or attach event listeners.
+and attach event listeners
 
 ```js
 var btn = dom('button', {
-  id: 'btn'
-	onclick: function() {
-	  // do something
+  id: 'btn',
+  onclick: function() {
+    // do something
   }
 });
 btn();
 ```
+it is that easy!
 
+Bind a DOM element with some data
 
+```js
+var btn = dom('button', 'Hello ${name}!');
+btn({
+  name: 'bredele'
+});
+// => <button>Hello bredele</button>
+```
+
+and update it whenever the data changes
+
+```js
+btn({
+  name: 'olivier'
+});
+// => <button>Hello olivier</button>
+```
+
+It is blazing fast and works everywhere
+
+```js
+var btn = dom('button', {
+  class: '${type}'
+}, 'Hello ${name}');
+
+btn({
+  name: 'olivier',
+  type: 'developer'
+});
+// => <button class="developer">Hello olivier</button>
+```
+
+## Advanced
+
+## Use with [datastore](http://github.com/bredele/datastore)
+
+```js
+var store = new Store();
+
+var btn = dom('button', '${name}');
+btn(store);
+
+store.set('name', 'bredele');
+// => <button>bredele</button>
+
+store.set('name', 'olivier');
+// => <button>olivier</button>
+```
 
 ## Use with [brick](http://github.com/bredele/brickjs)
 
@@ -65,11 +114,10 @@ var list = brick(
 );
 
 list.set({
-	name: 'olivier',
-	repo: 'grout'
+  name: 'olivier',
+  repo: 'grout'
 });
 ```
-
 
 ## License
 
