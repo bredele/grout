@@ -2,9 +2,12 @@
 
 ## Usage
 
-
 ```js
 var dom = require('grout');
+
+var btn = dom('button', 'hello');
+btn();
+// => <button>hello</button>
 ```
 
 
