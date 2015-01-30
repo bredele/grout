@@ -10,8 +10,9 @@ btn();
 // => <button>hello</button>
 ```
 
+## Learn it in 3
 
-## Learn it in 2
+### create
 
 Create a DOM element
 
@@ -39,7 +40,7 @@ var inception = dom('ul', [
 inception();
 ```
 
-<br><br>
+### attributes
 
 Create attributes 
 
@@ -65,7 +66,7 @@ btn();
 ```
 it is that easy!
 
-<br><br>
+### observable
 
 Bind a DOM element with some data
 
@@ -102,7 +103,7 @@ btn({
 
 ## Advanced
 
-## Use with [datastore](http://github.com/bredele/datastore)
+### Use with [datastore](http://github.com/bredele/datastore)
 
 ```js
 var store = new Store();
@@ -117,7 +118,7 @@ store.set('name', 'olivier');
 // => <button>olivier</button>
 ```
 
-## Use with [brick](http://github.com/bredele/brickjs)
+### Use with [brick](http://github.com/bredele/brickjs)
 
 ```js
 var list = brick(
