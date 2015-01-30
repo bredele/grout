@@ -42,17 +42,19 @@ module.exports = function(tag, attrs, nodes) {
 
 function attributes(dom, obj, store) {
   for(var key in obj) {
-    var attr = obj[key];
-    if(typeof attr === 'function') {
-      if(key.substring(0,2) === 'on') {
-        dom[key] = attr;
-        break;
-      }
-      attr = attr.call(store.data);
-    } else {
-      attr = mouth(attr).text(store.data);
+    var value = obj[key];
+    var attr = document.createAttribute(key);
+    if(typeof value === 'function') {
+        if(key.substring(0,2) === 'on') {
+          dom[key] = value;
+          break;
+        }
+        // todo: we don't want to parse for identifiers it function
+        // text handler should have a static option
+        value = value.call(store.data);
     }
-    dom.setAttribute(key, attr);
+    text(attr, value, store);
+    dom.attributes.setNamedItem(attr);
   }
 }
 

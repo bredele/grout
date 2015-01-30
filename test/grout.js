@@ -181,7 +181,7 @@ describe('template', function() {
       })(store);
       assert.equal(dom.className, 'btn hello');
       store.set('label', 'world');
-      assert.equal(dom.innerHTML, 'btn world');
+      assert.equal(dom.className, 'btn world');
     });
 
   });
