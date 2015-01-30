@@ -7,6 +7,7 @@ Create a DOM element
 ```js
 var btn = dom('button');
 btn();
+// => <button></button>
 ```
 
 with a text content
@@ -14,6 +15,7 @@ with a text content
 ```js
 var btn = dom('button', 'Hello world!');
 btn();
+// => <button>Hello world!</button>
 ```
 
 and quickly append multiple DOM nodes.
@@ -34,6 +36,7 @@ var btn = dom('button', {
   class: 'dark'
 });
 btn();
+// => <button id="btn" class="dark"></button>
 ```
 
 and attach event listeners
