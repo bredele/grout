@@ -36,7 +36,7 @@ var inception = dom('ul', [
 inception();
 ```
 
-
+<br><br>
 
 Create attributes 
 
@@ -62,8 +62,7 @@ btn();
 ```
 it is that easy!
 
-
-
+<br><br>
 
 Bind a DOM element with some data
 
