@@ -54,15 +54,37 @@ function attributes(dom, obj, store) {
         value = value.call(store.data);
     }
     if(key === 'style' && typeof value === 'object') {
-      var result = '';
-      for(var style in value) {
-        result += style + ':' + value[style] + ';';
-      }
-      value = result;
+      value = styles(value);
     }
     text(attr, value, store);
     dom.attributes.setNamedItem(attr);
   }
+}
+
+
+/**
+ * Create style attribute from
+ * object.
+ *
+ * Examples:
+ *
+ *   styles({
+ *     background: 'red',
+ *     width: '100px'
+ *   });
+ *   // => 'background:red;width:100px'
+ * 
+ * @param  {Object} obj
+ * @return {String}
+ * @api privte
+ */
+
+function styles(obj) {
+  var result = '';
+  for(var style in obj) {
+    result += style + ':' + obj[style] + ';';
+  }
+  return result;
 }
 
 
