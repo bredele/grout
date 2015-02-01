@@ -139,6 +139,20 @@ describe('basic', function() {
     
   });
   
+  describe('styles', function() {
+
+    it('should create styles from object', function() {
+      var dom = x('button', {
+        style: {
+          background: 'red',
+          width: '100px'
+        }
+      })();
+
+      assert.equal(dom.getAttribute('style'), 'background:red;width:100px;');
+    });
+
+  });
 
 });
 

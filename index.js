@@ -53,6 +53,13 @@ function attributes(dom, obj, store) {
         // text handler should have a static option
         value = value.call(store.data);
     }
+    if(key === 'style' && typeof value === 'object') {
+      var result = '';
+      for(var style in value) {
+        result += style + ':' + value[style] + ';';
+      }
+      value = result;
+    }
     text(attr, value, store);
     dom.attributes.setNamedItem(attr);
   }
