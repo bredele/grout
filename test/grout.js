@@ -174,6 +174,19 @@ describe('template', function() {
     assert.equal(dom.className, 'btn hello');
   });
 
+  it('should substitute styles with data', function() {
+      var dom = x('button', {
+        style: {
+          background: '${color}',
+          width: '${size}px'
+        }
+      })({
+        color: 'red',
+        size: 100
+      });
+      assert.equal(dom.getAttribute('style'), 'background:red;width:100px;');
+  });
+
   describe('observable', function() {
 
     it('should update inner text when data changes', function() {
