@@ -211,6 +211,22 @@ describe('template', function() {
       assert.equal(dom.className, 'btn world');
     });
 
+    it('should update style attribute when daa changes', function() {
+      var store = new Store({
+        color: 'red',
+        size: 100
+      });
+      var dom = x('button', {
+        style: {
+          background: '${color}',
+          width: '${size}px'
+        }
+      })(store);
+
+      store.set('color', 'green');
+      assert.equal(dom.getAttribute('style'), 'background:green;width:100px;');
+    });
+
   });
 
 });
