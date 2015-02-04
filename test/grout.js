@@ -189,42 +189,54 @@ describe('template', function() {
 
   describe('observable', function() {
 
-    it('should update inner text when data changes', function() {
-      var store = new Store({
-        label: 'hello'
+    describe('data', function() {
+
+      it('should update inner text when data changes', function() {
+
       });
-      var dom = x('button', '${label}')(store);
-      assert.equal(dom.innerHTML, 'hello');
-      store.set('label', 'world');
-      assert.equal(dom.innerHTML, 'world');
+      
     });
 
-    it('should update attribute when data changes', function() {
-      var store = new Store({
-        label: 'hello'
-      });
-      var dom = x('button', {
-        class: 'btn ${label}'
-      })(store);
-      assert.equal(dom.className, 'btn hello');
-      store.set('label', 'world');
-      assert.equal(dom.className, 'btn world');
-    });
+    describe('datastore', function() {
 
-    it('should update style attribute when daa changes', function() {
-      var store = new Store({
-        color: 'red',
-        size: 100
+      var store;
+      beforeEach(function() {
+        store = new Store({
+          label: 'hello',
+          color: 'red',
+          size: 100
+        });
       });
-      var dom = x('button', {
-        style: {
-          background: '${color}',
-          width: '${size}px'
-        }
-      })(store);
+      
 
-      store.set('color', 'green');
-      assert.equal(dom.getAttribute('style'), 'background:green;width:100px;');
+      it('should update inner text when datastore changes', function() {
+
+        var dom = x('button', '${label}')(store);
+        assert.equal(dom.innerHTML, 'hello');
+        store.set('label', 'world');
+        assert.equal(dom.innerHTML, 'world');
+      });
+
+      it('should update attribute when datastore changes', function() {
+        var dom = x('button', {
+          class: 'btn ${label}'
+        })(store);
+        assert.equal(dom.className, 'btn hello');
+        store.set('label', 'world');
+        assert.equal(dom.className, 'btn world');
+      });
+
+      it('should update style attribute when datastore changes', function() {
+        var dom = x('button', {
+          style: {
+            background: '${color}',
+            width: '${size}px'
+          }
+        })(store);
+
+        store.set('color', 'green');
+        assert.equal(dom.getAttribute('style'), 'background:green;width:100px;');
+      });
     });
 
   });
