@@ -192,9 +192,17 @@ describe('template', function() {
     describe('data', function() {
 
       it('should update inner text when data changes', function() {
+        var dom = x('button', '${label}');
+        dom({
+          label: 'hello'
+        });
+        dom({
+          label: 'olivier'
+        });
 
+        assert.equal(dom.innerHTML, 'olivier');
       });
-      
+
     });
 
     describe('datastore', function() {
