@@ -19,13 +19,18 @@ var Store = require('datastore');
 module.exports = function(tag, attrs, nodes) {
   var dom = document.createElement(tag);
   var bool = !(attrs instanceof Array) && typeof attrs === 'object';
+  var store;
   return function(data) {
-    var store = new Store(data);
-    if(bool) {
-      attributes(dom, attrs, store);
-      attrs = nodes;
+    if(store) {
+      store.reset(data);
+    } else {
+      store = new Store(data);
+      if(bool) {
+        attributes(dom, attrs, store);
+        attrs = nodes;
+      }
+      if(attrs) children(dom, attrs, store);
     }
-    if(attrs) children(dom, attrs, store);
     return dom;
   };
 };

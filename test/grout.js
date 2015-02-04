@@ -196,11 +196,11 @@ describe('template', function() {
         dom({
           label: 'hello'
         });
-        dom({
+        var el = dom({
           label: 'olivier'
         });
 
-        assert.equal(dom.innerHTML, 'olivier');
+        assert.equal(el.innerHTML, 'olivier');
       });
 
     });
