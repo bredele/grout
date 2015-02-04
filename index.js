@@ -22,6 +22,7 @@ module.exports = function(tag, attrs, nodes) {
   var store;
   return function(data) {
     if(store) {
+      // todo: we should be able to reset a datastore with an other datastore
       store.reset(data);
     } else {
       store = new Store(data);
