@@ -17,7 +17,7 @@ var Store = require('datastore');
  */
 
 module.exports = function(tag, attrs, nodes) {
-  var dom = document.createElement(tag);
+  var dom = parse(tag);
   var bool = !(attrs instanceof Array) && typeof attrs === 'object';
   var store;
   return function(data) {
@@ -35,6 +35,20 @@ module.exports = function(tag, attrs, nodes) {
     return dom;
   };
 };
+
+
+function parse(tag) {
+  var dom, id, classes = '';
+  tag = tag.replace(/([#|.])(\w*)/g, function(_, type, attr) {
+    if(type === '#') id = attr;
+    else classes += attr + ' ';
+    return '';
+  });
+  dom = document.createElement(tag);
+  if(classes) dom.className = classes;
+  if(id) dom.id = id;
+  return dom;
+}
 
 
 /**
