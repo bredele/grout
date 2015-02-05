@@ -17,7 +17,7 @@ var Store = require('datastore');
  */
 
 module.exports = function(tag, attrs, nodes) {
-  var dom = parse(tag);
+  var dom = create(tag);
   var bool = !(attrs instanceof Array) && typeof attrs === 'object';
   var store;
   return function(data) {
@@ -37,7 +37,24 @@ module.exports = function(tag, attrs, nodes) {
 };
 
 
-function parse(tag) {
+/**
+ * Create dom element from
+ * query string.
+ *
+ * Examples:
+ *
+ *   create(button.btn);
+ *   // => <button class='btn'></button>
+ *
+ *   create('.item#uniq');
+ *   // => <div id='uniq' class='item'></div>
+ *   
+ * @param  {String} tag
+ * @return {Element}
+ * @api private
+ */
+
+function create(tag) {
   var dom, id, classes = '';
   tag = tag.replace(/([#|.])(\w*)/g, function(_, type, attr) {
     if(type === '#') id = attr;
