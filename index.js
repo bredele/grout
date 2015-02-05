@@ -44,7 +44,7 @@ function parse(tag) {
     else classes += attr + ' ';
     return '';
   });
-  dom = document.createElement(tag);
+  dom = document.createElement(tag || 'div');
   if(classes) dom.className = classes;
   if(id) dom.id = id;
   return dom;
