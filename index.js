@@ -61,6 +61,7 @@ function create(tag) {
     else classes += attr + ' ';
     return '';
   });
+  // note it is dirty! it would be better to merge attrs
   dom = document.createElement(tag || 'div');
   if(classes) dom.className = classes;
   if(id) dom.id = id;
