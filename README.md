@@ -8,7 +8,7 @@ var inception = dom('ul', [
   dom('li', '${name}')
 ]);
 
-btn({
+inception({
   name: 'bredele'
 });
 ```
