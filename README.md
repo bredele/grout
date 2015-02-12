@@ -14,7 +14,7 @@ btn({
 ```
 [see live]()
 
-Both [brick](http://github.com/brickjs) and grout promote clean and maintainable rendering logic. Their speed as well as their combined weight (only 3kb) makes them ideal for both desktop and mobile.
+Both [brick](http://github.com/brickjs) and grout promote clean and maintainable rendering logic. Their speed as well as their combined weight (only 3kb) makes them ideal for desktop and mobile.
 
 ## Learn it in 3
 
