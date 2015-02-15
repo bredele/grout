@@ -1,14 +1,20 @@
 # grout
 
-## Usage
+Grout is a declarative way to create DOM elements and efficiently update them whenever data changes. Also called virtual-dom it is the perfect companion for [brick](http://github.com/brickjs) and also works server side with nodejs.
 
 ```js
-var dom = require('grout');
+var inception = dom('ul', [
+  dom('li', 'Hello'),
+  dom('li', '${name}')
+]);
 
-var btn = dom('button', 'hello');
-btn();
-// => <button>hello</button>
+inception({
+  name: 'bredele'
+});
 ```
+[see live]()
+
+Both [brick](http://github.com/brickjs) and grout promote clean and maintainable rendering logic. Their speed as well as their combined weight (only 3kb) makes them ideal for desktop and mobile. 
 
 ## Learn it in 3
 
@@ -39,6 +45,8 @@ var inception = dom('ul', [
 ]);
 inception();
 ```
+
+Grout keeps manual DOM manipulation out of your application code.
 
 ### attributes
 
