@@ -61,7 +61,7 @@ function create(tag) {
     else classes += attr + ' ';
     return '';
   });
-  // note it is dirty! it would be better to merge attrs
+  // note it is dirty! it would be better to merge attrs (to test)
   dom = document.createElement(tag || 'div');
   if(classes) dom.className = classes;
   if(id) dom.id = id;
@@ -81,6 +81,7 @@ function create(tag) {
 function attributes(dom, obj, store) {
   for(var key in obj) {
     var value = obj[key];
+    // note: tests if faster than setAttribute (otherwise use npm html-element)
     var attr = document.createAttribute(key);
     if(typeof value === 'function') {
         if(key.substring(0,2) === 'on') {

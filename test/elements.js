@@ -17,6 +17,7 @@ describe('create', function() {
   it('should create dom element', function() {
     var el = dom('button')();
     assert.equal(tag(el), 'button');
+    assert.equal(el.innerHTML, '');
   });
 
 });
