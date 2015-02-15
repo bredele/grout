@@ -29,6 +29,12 @@ describe("append", function() {
     assert.equal(el.innerHTML, 'hello');
   });
 
+  it('should append dom element', function() {
+    var link = document.createElement('a');
+    var el = dom('button', link)();
+    asset.equal(el.firstChild, link);
+  });
+
   it('should append one child node', function() {
     var ul = dom('ul', [
       dom('li', 'hello')
@@ -86,8 +92,6 @@ describe('query', function() {
 
 
 });
-
-
 
 /**
  * Return node name (lower case).
