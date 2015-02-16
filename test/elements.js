@@ -32,7 +32,7 @@ describe("append", function() {
   it('should append dom element', function() {
     var link = document.createElement('a');
     var el = dom('button', link)();
-    asset.equal(el.firstChild, link);
+    assert.equal(el.firstChild, link);
   });
 
   it('should append one child node', function() {
@@ -52,6 +52,15 @@ describe("append", function() {
       dom('li', 'world')
     ])();
     assert.equal(ul.children.length, 2);
+  });
+
+  it('should append multiple child and dom nodes', function() {
+    var li = document.createElement('li');
+    var ul = dom('ul', [
+      li,
+      dom('li', 'world')
+    ])();
+    assert.equal(ul.firstChild, li);
   });
 
   it('should append text node', function() {
@@ -92,6 +101,45 @@ describe('query', function() {
 
 
 });
+
+
+// dirty benchmark
+(function() {
+  var t0 = performance.now();
+  dom('ul', [
+    dom('li'),
+    dom('li', {
+      id: 'item'
+    }),
+    //dom('li', document.createElement('button')),
+    dom('li', [
+      'hello',
+      dom('span', '${name}')//,
+      //document.createElement('address')
+    ])
+  ])({
+    name: 'olivier'
+  });
+  console.log(performance.now() - t0);
+})();
+(function() {
+  var t0 = performance.now();
+  dom('ul', [
+    dom('li'),
+    dom('li', {
+      id: 'item'
+    }),
+    //dom('li', document.createElement('button')),
+    dom('li', [
+      'hello',
+      dom('span', '${name}')//,
+      //document.createElement('address')
+    ])
+  ])({
+    name: 'olivier'
+  });
+  console.log(performance.now() - t0);
+})();
 
 /**
  * Return node name (lower case).

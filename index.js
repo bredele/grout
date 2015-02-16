@@ -27,10 +27,14 @@ module.exports = function(tag, attrs, nodes) {
     } else {
       store = new Store(data);
       if(bool) {
-        attributes(dom, attrs, store);
-        attrs = nodes;
+        if(attrs.nodeType) {
+          dom.appendChild(attrs);
+        } else {
+          attributes(dom, attrs, store);
+          attrs = nodes;
+        }
       }
-      if(attrs) children(dom, attrs, store);
+      if(attrs) children(dom, [].concat(attrs), store);
     }
     return dom;
   };
@@ -160,11 +164,12 @@ function text(dom, str, store) {
  */
 
 function children(dom, nodes, data) {
-  if(typeof nodes === 'string') text(dom, nodes, data);
-  else for(var i = 0, l = nodes.length; i < l; i++) {
+  for(var i = 0, l = nodes.length; i < l; i++) {
     var node = nodes[i];
-    if(typeof node === 'string') text(dom, node, data);
-    else dom.appendChild(node());
+    var type = typeof node;
+    if(type === 'string') text(dom, node, data);
+    else if(type === 'function') dom.appendChild(node());
+    else dom.appendChild(node);
   }
 }
 
