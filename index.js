@@ -164,8 +164,7 @@ function children(dom, nodes, data) {
     var node = nodes[i];
     var type = typeof node;
     if(type === 'string') text(dom, node, data);
-    else if(type === 'function') dom.appendChild(node());
-    else dom.appendChild(node);
+    else dom.appendChild(node());
   }
 }
 
