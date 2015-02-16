@@ -35,11 +35,11 @@ describe("append", function() {
     assert.equal(el.innerHTML, 'hello');
   });
 
-  // it('should append dom element', function() {
-  //   var link = document.createElement('a');
-  //   var el = dom('button', link)();
-  //   assert.equal(el.firstChild, link);
-  // });
+  it('should append dom element', function() {
+    var link = document.createElement('a');
+    var el = dom('button', dom(link))();
+    assert.equal(el.firstChild, link);
+  });
 
   it('should append one child node', function() {
     var ul = dom('ul', [
