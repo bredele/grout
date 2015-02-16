@@ -27,12 +27,8 @@ module.exports = function(tag, attrs, nodes) {
     } else {
       store = new Store(data);
       if(bool) {
-        if(attrs.nodeType) {
-          dom.appendChild(attrs);
-        } else {
-          attributes(dom, attrs, store);
-          attrs = nodes;
-        }
+        attributes(dom, attrs, store);
+        attrs = nodes;
       }
       if(attrs) children(dom, [].concat(attrs), store);
     }
