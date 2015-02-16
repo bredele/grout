@@ -17,7 +17,7 @@ var Store = require('datastore');
  */
 
 module.exports = function(tag, attrs, nodes) {
-  var dom = create(tag);
+  var dom = typeof tag === 'string' ? create(tag) : tag;
   var bool = !(attrs instanceof Array) && typeof attrs === 'object';
   var store;
   return function(data) {
