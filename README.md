@@ -61,6 +61,20 @@ btn();
 // => <button id="btn" class="dark"></button>
 ```
 
+add some inline styles
+
+```js
+var btn = dom('button', {
+  id: 'btn',
+  style: {
+    background: 'red'
+  }
+});
+btn();
+// => <button id="btn" class="dark"></button>
+```
+
+
 and attach event listeners
 
 ```js
