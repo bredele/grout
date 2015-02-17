@@ -21,10 +21,9 @@ module.exports = function(tag, attrs, nodes) {
   var bool = !(attrs instanceof Array) && typeof attrs === 'object';
   var store;
   return function(data) {
-    if(store) {
-      // todo: we should be able to reset a datastore with an other datastore
-      store.reset(data);
-    } else {
+    // todo: we should be able to reset a datastore with an other datastore
+    if(store) store.reset(data);
+    else {
       store = new Store(data);
       if(bool) {
         attributes(dom, attrs, store);
@@ -81,9 +80,10 @@ function create(tag) {
 function attributes(dom, obj, store) {
   for(var key in obj) {
     var value = obj[key];
+    var type = typeof value;
     // note: tests if faster than setAttribute
     var attr = document.createAttribute(key);
-    if(typeof value === 'function') {
+    if(type === 'function') {
         if(key.substring(0,2) === 'on') {
           dom[key] = value;
           break;
@@ -92,7 +92,7 @@ function attributes(dom, obj, store) {
         // text handler should have a static option
         value = value.call(store.data);
     }
-    if(key === 'style' && typeof value === 'object') {
+    if(key === 'style' && type === 'object') {
       value = styles(value);
     }
     text(attr, value, store);
