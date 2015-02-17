@@ -81,7 +81,7 @@ function create(tag) {
 function attributes(dom, obj, store) {
   for(var key in obj) {
     var value = obj[key];
-    // note: tests if faster than setAttribute (otherwise use npm html-element)
+    // note: tests if faster than setAttribute
     var attr = document.createAttribute(key);
     if(typeof value === 'function') {
         if(key.substring(0,2) === 'on') {
@@ -162,8 +162,7 @@ function text(dom, str, store) {
 function children(dom, nodes, data) {
   for(var i = 0, l = nodes.length; i < l; i++) {
     var node = nodes[i];
-    var type = typeof node;
-    if(type === 'string') text(dom, node, data);
+    if(typeof node === 'string') text(dom, node, data);
     else dom.appendChild(node());
   }
 }
