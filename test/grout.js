@@ -48,12 +48,17 @@ describe('basic', function() {
 			dom('li', 'hello'),
 			dom('li', 'world')
 		])();
-		assert.equal(ul.children.length, 2);
-		assert.equal(ul.firstChild.innerText, 'hello');
+		assert.equal(ul.innerHTML, '<li>hello</li><li>world</li>');
 	});
 
 	it('should append a fragment of multiple DOM nodes returned by a function', function() {
-
+		var ul = dom('ul', function() {
+			return [
+				dom('li', 'hello'),
+				dom('li', 'world')
+			]
+		})();
+		assert.equal(ul.innerHTML, '<li>hello</li><li>world</li>');
 	});
 
 	it('should append fragment oof multiple DOM nodes or strings', function() {
