@@ -110,6 +110,15 @@ describe('attributes', function() {
 		ev.initEvent('click', true, true);
 		el.dispatchEvent(ev, true);
 	});
+
+	it('should define functions as attributes', function() {
+	  var el = dom('button', null, {
+	    class: function() {
+	      return 'hello-world';
+	    }
+	  })();
+	  assert.equal(el.className, 'hello-world');
+	});
 });
 
 

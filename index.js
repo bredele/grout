@@ -123,6 +123,7 @@ function attributes(el, attrs, store) {
     else if(typeof value === 'function') {
       var bool = key.substring(0, 2) === 'on';
       if(bool) el.addEventListener(key.slice(2), value);
+      else el.setAttribute(key, value.call(store.data));
       // @not we should compute the function if it's not an event
       break;
     }
