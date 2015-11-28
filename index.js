@@ -3,8 +3,11 @@
 module.exports = function(tag, content) {
   var el = document.createElement(tag);
   return function(data) {
-    if(typeof content === 'string') el.innerText = content;
-    else if(content) el.appendChild(content);
+    var type = typeof content;
+    var node = content;
+    if(type === 'string') node = document.createTextNode(content);
+    else if(type === 'function') node = content();
+    if(node) el.appendChild(node);
     return el;
   };
 };

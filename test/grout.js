@@ -28,4 +28,13 @@ describe('basic', function() {
 		assert.equal(el.firstChild, span);
 	});
 
+	it('should append DOM element returned by function', function() {
+		var span = document.createElement('span');
+		var el = dom('a', function() {
+			return span;
+		})();
+		assert.equal(el.firstChild, span);
+	});
+
+
 });
