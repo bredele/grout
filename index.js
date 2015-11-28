@@ -66,6 +66,15 @@ function render(content, store) {
 }
 
 
+/**
+ * Bind virtual dom with data store.
+ *
+ * @param {String} text
+ * @param {Function} fn
+ * @param {DataStore} store
+ * @api private
+ */
+
 function bind(text, fn, store) {
   var data = store.data;
   var tmpl = mouth(text, store.data);
