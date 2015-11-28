@@ -28,12 +28,19 @@ describe('basic', function() {
 		assert.equal(el.firstChild, span);
 	});
 
-	it('should append DOM element returned by function', function() {
+	it('should append DOM element returned by a function', function() {
 		var span = document.createElement('span');
 		var el = dom('a', function() {
 			return span;
 		})();
 		assert.equal(el.firstChild, span);
+	});
+
+	it('should append a string returned by a function', function() {
+		var el = dom('a', function() {
+			return 'hello world';
+		})();
+		assert.equal(el.innerHTML, 'hello world');
 	});
 
 	it('should append fragment of multiple DOM nodes', function() {

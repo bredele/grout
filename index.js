@@ -12,7 +12,7 @@ module.exports = function(tag, content) {
 function render(content) {
   var type = typeof content;
   var node = content;
-  if(type === 'function') node = content();
+  if(type === 'function') node = render(content());
   else if(type === 'string') node = document.createTextNode(content);
   else if(content instanceof Array) node = fragment(content);
   return node;
