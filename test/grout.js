@@ -52,6 +52,10 @@ describe('basic', function() {
 		assert.equal(ul.firstChild.innerText, 'hello');
 	});
 
+	it('should append a fragment of multiple DOM nodes returned by a function', function() {
+
+	});
+
 	it('should append fragment oof multiple DOM nodes or strings', function() {
 		var el = dom('a', [
 			'hello',
