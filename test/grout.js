@@ -45,4 +45,12 @@ describe('basic', function() {
 		assert.equal(ul.firstChild.innerText, 'hello');
 	});
 
+	it('should append fragment oof multiple DOM nodes or strings', function() {
+		var el = dom('a', [
+			'hello',
+			dom('span', 'world')
+		])();
+		assert.equal(el.innerHTML,'hello<span>world</span>');
+	});
+
 });
