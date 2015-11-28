@@ -92,4 +92,13 @@ describe('attributes', function() {
 		})();
 		assert.equal(el.getAttribute('href'), 'http://google.com');
 	});
+
+	it('should set multiple attributes', function() {
+		var el = dom('button', null, {
+			id: 'btn',
+			class: 'purple',
+			role : 'button'
+		})();
+		assert.equal(el.outerHTML, '<button id="btn" class="purple" role="button"></button>');
+	});
 });
