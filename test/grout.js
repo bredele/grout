@@ -18,8 +18,8 @@ describe('basic', function() {
 	});
 
 	it('should set inner text of a DOM element', function() {
-		var el = dom('span', 'hello world')();
-		assert.equal(el.innerText, 'hello world');
+		var el = dom('span', 'hello')();
+		assert.equal(el.innerHTML, 'hello');
 	});
 
 	it('should append DOM element', function() {
@@ -67,6 +67,18 @@ describe('basic', function() {
 			dom('span', 'world')
 		])();
 		assert.equal(el.innerHTML,'hello<span>world</span>');
+	});
+
+});
+
+
+describe('interpolation', function() {
+
+	it('should interpolate inner variables with data', function() {
+		var el = dom('span', '${name}')({
+			name: 'olivier'
+		});
+		assert.equal(el.innerHTML, 'olivier');
 	});
 
 });
