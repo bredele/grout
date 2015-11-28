@@ -72,18 +72,6 @@ describe('basic', function() {
 });
 
 
-describe('interpolation', function() {
-
-	it('should interpolate inner variables with data', function() {
-		var el = dom('span', 'hello ${name}')({
-			name: 'olivier'
-		});
-		assert.equal(el.innerHTML, 'hello olivier');
-	});
-
-});
-
-
 describe('attributes', function() {
 
 	it('should set one attribute', function() {
@@ -101,4 +89,25 @@ describe('attributes', function() {
 		})();
 		assert.equal(el.outerHTML, '<button id="btn" class="purple" role="button"></button>');
 	});
+});
+
+
+describe('interpolation', function() {
+
+	it('should interpolate inner variables with data', function() {
+		var el = dom('span', 'hello ${name}')({
+			name: 'olivier'
+		});
+		assert.equal(el.innerHTML, 'hello olivier');
+	});
+
+	it('should interpolate attribute value', function() {
+		var el = dom('span', null, {
+			class: 'hello ${name}'
+		})({
+			name: 'olivier'
+		});
+		assert.equal(el.outerHTML, '<span class="hello olivier"></span>');
+	});
+
 });

@@ -10,7 +10,7 @@ module.exports = function(tag, content, attrs) {
   return function(data) {
     var node = render(content, data);
     if(node) el.appendChild(node);
-    if(attrs) attributes(el, attrs);
+    if(attrs) attributes(el, attrs, data);
     return el;
   };
 };
@@ -38,8 +38,9 @@ function fragment(arr) {
 }
 
 
-function attributes(el, attrs) {
+function attributes(el, attrs, data) {
   for(var key in attrs) {
-    el.setAttribute(key, attrs[key]);
+    var cb = tmpl(attrs[key], data)[0];
+    el.setAttribute(key, cb(data));
   }
 }
