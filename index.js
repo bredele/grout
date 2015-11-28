@@ -40,7 +40,23 @@ function fragment(arr) {
 
 function attributes(el, attrs, data) {
   for(var key in attrs) {
-    var cb = tmpl(attrs[key], data)[0];
-    el.setAttribute(key, cb(data));
+    var value = attrs[key];
+    var str;
+    if(typeof value === 'object') {
+      str = styles(value);
+    } else {
+      // @note should refactor with render (too bad attribute can't append text node anymore)
+      var cb = tmpl(value, data)[0];
+      str = cb(data);
+    }
+    el.setAttribute(key, str);
   }
+}
+
+function styles(obj) {
+  var str = '';
+  for(var key in obj) {
+    str += key + ':' + obj[key] + ';';
+  }
+  return str;
 }

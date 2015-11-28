@@ -89,6 +89,16 @@ describe('attributes', function() {
 		})();
 		assert.equal(el.outerHTML, '<button id="btn" class="purple" role="button"></button>');
 	});
+
+	it('should render style attribute', function() {
+		var el = dom('button', null, {
+			style : {
+				color: 'red',
+				background: 'black'
+			}
+		})();
+		assert.equal(el.outerHTML, '<button style="color:red;background:black;"></button>');
+	});
 });
 
 
