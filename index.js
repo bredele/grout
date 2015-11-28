@@ -1,12 +1,9 @@
 
 
-module.exports = function(tag) {
-  var el = element(tag);
+module.exports = function(tag, content) {
+  var el = document.createElement(tag);
   return function(data) {
     return el;
   };
 };
 
-function element(tag) {
-  return typeof tag === 'string' ? document.createElement(tag) : tag;
-}
