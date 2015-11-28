@@ -53,7 +53,7 @@ Grout keeps manual DOM manipulation out of your application code.
 Create attributes 
 
 ```js
-var btn = dom('button', {
+var btn = dom('button', null, {
   id: 'btn',
   class: 'dark'
 });
@@ -64,7 +64,7 @@ btn();
 add some inline styles
 
 ```js
-var btn = dom('button', {
+var btn = dom('button', null, {
   id: 'btn',
   style: {
     background: 'red'
@@ -78,7 +78,7 @@ btn();
 and attach event listeners
 
 ```js
-var btn = dom('button', {
+var btn = dom('button', null, {
   id: 'btn',
   onclick: function() {
     // do something
@@ -112,9 +112,9 @@ btn({
 It is blazing fast and works with every DOM nodes
 
 ```js
-var btn = dom('button', {
+var btn = dom('button', 'Hello ${name}', {
   class: '${type}'
-}, 'Hello ${name}');
+});
 
 btn({
   name: 'olivier',
@@ -147,9 +147,9 @@ var list = brick(
   dom('ul', [
     dom('li', 'hello ${name}'),
     dom('li', [
-      dom('button', {
+      dom('button', 'welcome!', {
         class: 'btn ${repo}'
-      }, 'welcome!')
+      })
     ])
   ])
 );
