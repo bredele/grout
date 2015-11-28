@@ -61,7 +61,7 @@ describe('basic', function() {
 		assert.equal(ul.innerHTML, '<li>hello</li><li>world</li>');
 	});
 
-	it('should append fragment oof multiple DOM nodes or strings', function() {
+	it('should append fragment of multiple DOM nodes or strings', function() {
 		var el = dom('a', [
 			'hello',
 			dom('span', 'world')
@@ -75,10 +75,10 @@ describe('basic', function() {
 describe('interpolation', function() {
 
 	it('should interpolate inner variables with data', function() {
-		var el = dom('span', '${name}')({
+		var el = dom('span', 'hello ${name}')({
 			name: 'olivier'
 		});
-		assert.equal(el.innerHTML, 'olivier');
+		assert.equal(el.innerHTML, 'hello olivier');
 	});
 
 });

@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-tmpl = require('mouth');
+var tmpl = require('mouth');
 
 
 module.exports = function(tag, content) {
