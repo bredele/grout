@@ -2,7 +2,8 @@
  * Module dependencies.
  */
 
-var tmpl = require('mouth');
+var mouth = require('mouth');
+var Store = require('datastore');
 
 
 /**
@@ -27,11 +28,16 @@ var tmpl = require('mouth');
 
 module.exports = function(tag, content, attrs) {
   var el = document.createElement(tag);
+  var store;
   return function(data) {
-    var node = render(content, data);
-    if(node) el.appendChild(node);
-    if(attrs) attributes(el, attrs, data);
-    return el;
+    if(store) store.reset(data);
+    else {
+      store = new Store(data);
+      var node = render(content, store);
+      if(node) el.appendChild(node);
+      if(attrs) attributes(el, attrs, store);
+      return el;
+    }
   };
 };
 
@@ -40,21 +46,37 @@ module.exports = function(tag, content, attrs) {
  * Render virtual dom content.
  *
  * @param {String|Array|Element} content
- * @param {Object?} content
+ * @param {DataStore?} store
  * @return {Element}
  * @api private
  */
 
-function render(content, data) {
+function render(content, store) {
   var type = typeof content;
   var node = content;
-  if(type === 'function')node = render(content());
+  if(type === 'function') node = render(content(), store);
   else if(type === 'string') {
-    var cb = tmpl(content, data)[0];
-    node = document.createTextNode(cb(data));
+    node = document.createTextNode('');
+    bind(content, function(data) {
+      node.nodeValue = data;
+    }, store);
   } 
-  else if(content instanceof Array) node = fragment(content);
+  else if(content instanceof Array) node = fragment(content, store);
   return node;
+}
+
+
+function bind(text, fn, store) {
+  var data = store.data;
+  var tmpl = mouth(text, store.data);
+  var cb = tmpl[0];
+  var keys = tmpl[1];
+  fn(cb(store.data));
+  for(var l = keys.length; l--;) {
+    store.on('change ' + keys[l], function() {
+      fn(cb(store.data));
+    });
+  }
 }
 
 
@@ -62,14 +84,15 @@ function render(content, data) {
  * Render fragment of virtual dom.
  *
  * @param {Array} arr
+ * @param {DataStore} store
  * @return {DocumentFragment}
  * @api private
  */
 
-function fragment(arr) {
+function fragment(arr, store) {
   var el = document.createDocumentFragment();
   for(var i = 0, l = arr.length; i < l; i++) {
-    el.appendChild(render(arr[i]));
+    el.appendChild(render(arr[i], store));
   }
   return el;
 }
@@ -78,13 +101,13 @@ function fragment(arr) {
 /**
  * Render virtual dom attributes.
  *
- * @param {Element} ell
+ * @param {Element} el
  * @param {Object} attrs
- * @param {Object} dat
+ * @param {DataStore} store
  * @api private
  */
 
-function attributes(el, attrs, data) {
+function attributes(el, attrs, store) {
   for(var key in attrs) {
     var value = attrs[key];
     if(typeof value === 'object') value = styles(value);
@@ -94,10 +117,14 @@ function attributes(el, attrs, data) {
       // @not we should compute the function if it's not an event
       break;
     }
-    // @note should refactor with render (too bad attribute can't append text node anymore)
-    el.setAttribute(key,  tmpl(value, data)[0](data));
+
+    bind(value, function(data) {
+       // @note should refactor with render (too bad attribute can't append text node anymore)
+       el.setAttribute(key, data);
+    }, store);
   }
 }
+
 
 
 /**

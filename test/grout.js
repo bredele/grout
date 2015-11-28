@@ -145,3 +145,47 @@ describe('interpolation', function() {
 	});
 
 });
+
+describe('binding', function() {
+
+	it('should bind virtual dom with data', function() {
+		var fn = dom('span', 'hello ${name}');
+		var el = fn({
+			name: 'olivier'
+		});
+		assert.equal(el.innerHTML, 'hello olivier');
+
+		fn({
+			name: 'bruno'
+		});
+		assert.equal(el.innerHTML, 'hello bruno');
+	});
+
+
+	it('should bind virtual dom attributes with data', function() {
+		var fn = dom('span', null, {
+			class: '${name}',
+			style: {
+				color: '${color}',
+				background:'black'
+			}
+		});
+
+		var el = fn({
+			name: 'olivier',
+			color: 'red'
+		});
+		assert.equal(el.className, 'olivier');
+		assert.equal(el.getAttribute('style'), 'color:red;background:black;')
+
+		fn({
+			name: 'bruno',
+			color: 'green'
+		});
+
+		assert.equal(el.className, 'bruno');
+		assert.equal(el.getAttribute('style'), 'color:green;background:black;')
+	});
+
+
+});
