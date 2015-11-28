@@ -36,5 +36,13 @@ describe('basic', function() {
 		assert.equal(el.firstChild, span);
 	});
 
+	it('should append fragment of multiple DOM nodes', function() {
+		var ul = dom('ul', [
+			dom('li', 'hello'),
+			dom('li', 'world')
+		])();
+		assert.equal(ul.children.length, 2);
+		assert.equal(ul.firstChild.innerText, 'hello');
+	});
 
 });
