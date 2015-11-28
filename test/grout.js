@@ -99,6 +99,17 @@ describe('attributes', function() {
 		})();
 		assert.equal(el.outerHTML, '<button style="color:red;background:black;"></button>');
 	});
+
+	it('should create event listeners', function(done) {
+		var el = dom('button', null, {
+			onclick: function() {
+				done();
+			}
+		})();
+		var ev = document.createEvent('MouseEvents');
+		ev.initEvent('click', true, true);
+		el.dispatchEvent(ev, true);
+	});
 });
 
 
@@ -118,6 +129,19 @@ describe('interpolation', function() {
 			name: 'olivier'
 		});
 		assert.equal(el.outerHTML, '<span class="hello olivier"></span>');
+	});
+
+	it('should interpolate style attribute values', function() {
+		var el = dom('span', null, {
+			style: {
+				color: '${color}',
+				background: '${background}'
+			}
+		})({
+			color: 'red',
+			background: 'black'
+		});
+		assert.equal(el.outerHTML, '<span style="color:red;background:black;"></span>');
 	});
 
 });

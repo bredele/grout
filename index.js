@@ -41,15 +41,14 @@ function fragment(arr) {
 function attributes(el, attrs, data) {
   for(var key in attrs) {
     var value = attrs[key];
-    var str;
-    if(typeof value === 'object') {
-      str = styles(value);
-    } else {
-      // @note should refactor with render (too bad attribute can't append text node anymore)
-      var cb = tmpl(value, data)[0];
-      str = cb(data);
+    if(typeof value === 'object') value = styles(value);
+    else if(typeof value === 'function') {
+      var bool = key.substring(0, 2) === 'on';
+      if(bool) el.addEventListener(key.slice(2), value);
+      break;
     }
-    el.setAttribute(key, str);
+    // @note should refactor with render (too bad attribute can't append text node anymore)
+    el.setAttribute(key,  tmpl(value, data)[0](data));
   }
 }
 
