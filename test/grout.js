@@ -82,3 +82,14 @@ describe('interpolation', function() {
 	});
 
 });
+
+
+describe('attributes', function() {
+
+	it('should set one attribute', function() {
+		var el = dom('a', 'google', {
+			href: 'http://google.com'
+		})();
+		assert.equal(el.getAttribute('href'), 'http://google.com');
+	});
+});

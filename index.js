@@ -5,11 +5,12 @@
 var tmpl = require('mouth');
 
 
-module.exports = function(tag, content) {
+module.exports = function(tag, content, attrs) {
   var el = document.createElement(tag);
   return function(data) {
     var node = render(content, data);
     if(node) el.appendChild(node);
+    if(attrs) attributes(el, attrs);
     return el;
   };
 };
@@ -34,4 +35,11 @@ function fragment(arr) {
     el.appendChild(render(arr[i]));
   }
   return el;
+}
+
+
+function attributes(el, attrs) {
+  for(var key in attrs) {
+    el.setAttribute(key, attrs[key]);
+  }
 }
