@@ -120,8 +120,8 @@ function attributes(el, attrs, store) {
 
     bind(value, function(data) {
        // @note should refactor with render (too bad attribute can't append text node anymore)
-       el.setAttribute(key, data);
-    }, store);
+       el.setAttribute(this, data);
+    }.bind(key), store);
   }
 }
 
