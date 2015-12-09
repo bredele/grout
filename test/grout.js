@@ -17,6 +17,12 @@ describe('basic', function() {
 		assert.equal(el.nodeName, 'H1');
 	});
 
+	it('should accept DOM element', function() {
+		var btn = document.createElement('button');
+		var el = dom(btn)();
+		assert.equal(el, btn);
+	});
+
 	it('should set inner text of a DOM element', function() {
 		var el = dom('span', 'hello')();
 		assert.equal(el.innerHTML, 'hello');

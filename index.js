@@ -27,7 +27,7 @@ var Store = require('datastore');
  */
 
 module.exports = function(tag, content, attrs) {
-  var el = document.createElement(tag);
+  var el = (typeof tag === 'string') ? document.createElement(tag) : tag;
   var store;
   return function(data) {
     if(store) store.reset(data);
